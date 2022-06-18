@@ -1,0 +1,228 @@
+Title:
+    Tank Pack - Bleed's Game Art
+
+Author:
+    Bleed
+
+URL:
+    https://opengameart.org/content/tank-pack-bleeds-game-art
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+SPECIAL ATTRIBUTION INSTRUCTIONS:
+    Credit not needed but Appreciated.
+
+File(s):
+    * Tanks_Pack.zip
+
+----------------------------------------
+
+Title:
+    FreeArt - Topdown extras
+
+Author:
+    SpriteAttack
+
+URL:
+    https://opengameart.org/content/freeart-topdown-extras
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * FreeArt_TopDown_extras1.svg
+    * TopDown_extras1.zip
+
+----------------------------------------
+
+Title:
+    Trees and Bushes
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/trees-and-bushes
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * trees.zip
+    * trees.psd
+    * plants2.psd
+
+----------------------------------------
+
+Title:
+    Buildings / Bunkers / Weapon platforms
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/buildings-bunkers-weapon-platforms
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * buildings.zip
+
+----------------------------------------
+
+Title:
+    explosions
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/explosions-0
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * explosions.zip
+
+----------------------------------------
+
+Title:
+    Bridges
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/bridges
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * bridges.zip
+
+----------------------------------------
+
+Title:
+    Boxes and Barrels
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/boxes-and-barrels
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * boxes_N_barrels.zip
+
+----------------------------------------
+
+Title:
+    Train
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/train
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * Train.zip
+
+----------------------------------------
+
+Title:
+    Ground Tileset // Grass & Sand //
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/ground-tileset-grass-sand
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * ground_tilesest.zip
+
+----------------------------------------
+
+Title:
+    M1 Abrams
+
+Author:
+    nicisbig
+
+URL:
+    https://opengameart.org/content/m1-abrams
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * M1 Abrams tower real size.png
+    * M1 Abrams ketten real size.png
+    * M1 Abrams real size.png
+
+----------------------------------------
+
+Title:
+    Pickups/Powerups
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/pickups-powerups
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * pickups.psd
+    * pickups.zip
+
+----------------------------------------
+
+Title:
+    Missile
+Author:
+    samoliver
+
+URL:
+    https://opengameart.org/content/missile-0
+
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+
+File(s):
+    * missile.zip
+
+----------------------------------------
+
+Title:
+    Ships with ripple effect
+
+Author:
+    chabull
+
+URL:
+    https://opengameart.org/content/ships-with-ripple-effect
+
+License(s):
+    * CC-BY 3.0 ( http://creativecommons.org/licenses/by/3.0/legalcode )
+
+File(s):
+    * shipz.zip
+
+----------------------------------------
