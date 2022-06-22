@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class TankController : MonoBehaviour
 {
+    private int gameMode;
     public Transform shotSpawn;
     public GameObject shot;
     public GameObject missile;
@@ -55,6 +57,14 @@ public class TankController : MonoBehaviour
 
     private void Awake()
     {
+        if (!PlayerPrefs.HasKey("gameMode"))
+        {
+            PlayerPrefs.SetInt("gameMode", 3);
+        }
+        else
+        {
+            gameMode = PlayerPrefs.GetInt("gameMode");
+        }
         if (!PlayerPrefs.HasKey("tankModel"))
         {
             PlayerPrefs.SetInt("tankModel", 0);
@@ -73,13 +83,22 @@ public class TankController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         this.transform.position = GameController.spawnPoint;
         enemyCount = GameController.enemyCount;
+        if (!PlayerPrefs.HasKey("tankInitialHP"))
+        {
+            PlayerPrefs.SetInt("tankInitialHP", 10);
+        }
+        else
+        {
+            initialHP = PlayerPrefs.GetInt("tankInitialHP");
+        }
         if (!PlayerPrefs.HasKey("tankHP"))
         {
             PlayerPrefs.SetInt("tankHP", 10);
         }
         else
         {
-            initialHP = HP = PlayerPrefs.GetInt("tankHP");
+            if (SceneManager.GetActiveScene().buildIndex == 1) HP = (int)initialHP;
+            else HP = PlayerPrefs.GetInt("tankHP");
         }
         SetCountText();
         audio = GetComponent<AudioSource>();
@@ -292,6 +311,7 @@ public class TankController : MonoBehaviour
                 Destroy(collision.gameObject);
                 CameraShake.Shake(0.1f, 0.1f);
                 HP -= 1;
+                PlayerPrefs.SetInt("tankHP", HP);
             }
             
         }

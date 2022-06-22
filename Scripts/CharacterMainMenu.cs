@@ -8,6 +8,7 @@ public class CharacterMainMenu : MonoBehaviour
     private int totalTanks = 8;
     private float detectDistance;
     private int tankHP;
+    private int tankInitialHP;
 
     public int[] tankLocks = { 2, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -38,6 +39,15 @@ public class CharacterMainMenu : MonoBehaviour
         else
         {
             tankHP = PlayerPrefs.GetInt("tankHP");
+        }
+
+        if (!PlayerPrefs.HasKey("tankInitialHP"))
+        {
+            PlayerPrefs.SetInt("tankInitialHP", 10);
+        }
+        else
+        {
+            tankInitialHP = PlayerPrefs.GetInt("tankInitialHP");
         }
 
         if (!PlayerPrefs.HasKey("detectDistance"))
@@ -83,19 +93,34 @@ public class CharacterMainMenu : MonoBehaviour
         if (tankSelector == 1 || tankSelector == 2 || tankSelector == 7) PlayerPrefs.SetFloat("detectDistance", 10.0f);
         else PlayerPrefs.SetFloat("detectDistance", 14.0f);
 
-        if (tankSelector == 3 || tankSelector == 4) PlayerPrefs.SetInt("tankHP", 15);
-        else if (tankSelector == 5 || tankSelector == 7) PlayerPrefs.SetInt("tankHP", 20);
-        else PlayerPrefs.SetInt("tankHP", 10);
-    }
+        if (tankSelector == 3 || tankSelector == 4)
+        {
+            PlayerPrefs.SetInt("tankHP", 15);
+            PlayerPrefs.SetInt("tankInitialHP", 15);
+        }
+        else if (tankSelector == 5 || tankSelector == 7)
+        {
+            PlayerPrefs.SetInt("tankHP", 20);
+            PlayerPrefs.SetInt("tankInitialHP", 20);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("tankHP", 10);
+            PlayerPrefs.SetInt("tankInitialHP", 10);
+        }
+        }
 
     public void ExitToMenu()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        Pickup.numPickups = 0;
+        SceneManager.LoadScene("MenuSP", LoadSceneMode.Single);
     }
 
     public void GoToLevelSelect()
     {
+        Pickup.numPickups = 0;
         if (gameMode == 3) SceneManager.LoadScene("LevelSelectSP", LoadSceneMode.Single);
         if (gameMode == 4) SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        if (gameMode == 5) SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
     }
 }
