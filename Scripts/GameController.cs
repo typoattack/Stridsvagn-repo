@@ -79,8 +79,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        hasGameStarted = true;
-        canPause = true;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            canPause = false;
+            hasGameStarted = false;
+        }
+        else
+        {
+            canPause = true;
+            hasGameStarted = true;
+        }
     }
 
     private void Update()
@@ -146,6 +154,7 @@ public class GameController : MonoBehaviour
             }
 
             Instantiate(powerup, pos, transform.rotation);
+            Debug.Log(Pickup.numPickups);
         }
     }
 
@@ -268,6 +277,7 @@ public class GameController : MonoBehaviour
     {
         unpauseGame();
         hasGameStarted = false;
+        Pickup.numPickups = 0;
         SceneManager.LoadScene(currentScene.name, LoadSceneMode.Single);
     }
 
@@ -275,6 +285,7 @@ public class GameController : MonoBehaviour
     {
         unpauseGame();
         hasGameStarted = false;
+        Pickup.numPickups = 0;
         SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
     }
 }

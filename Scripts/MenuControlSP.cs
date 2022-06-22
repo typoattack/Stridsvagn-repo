@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuControlSP : MonoBehaviour
 {
-    private int gameMode; // 3 == free play, 4 == campaign
+    private int gameMode; // 3 == free play, 4 == campaign, 5 == tutorial
     private int livesRemaining;
     private void Awake()
     {
@@ -62,6 +62,7 @@ public class MenuControlSP : MonoBehaviour
 
     public void StartTutorial()
     {
-        SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
+        PlayerPrefs.SetInt("gameMode", 5);
+        SceneManager.LoadScene("CharacterSelectSP", LoadSceneMode.Single);
     }
 }
