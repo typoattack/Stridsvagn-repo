@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class TankController : MonoBehaviour
 {
     private int gameMode;
+    private int deathlessRun;
+
     public Transform shotSpawn;
     public GameObject shot;
     public GameObject missile;
@@ -65,6 +67,7 @@ public class TankController : MonoBehaviour
         {
             gameMode = PlayerPrefs.GetInt("gameMode");
         }
+
         if (!PlayerPrefs.HasKey("tankModel"))
         {
             PlayerPrefs.SetInt("tankModel", 0);
@@ -73,6 +76,16 @@ public class TankController : MonoBehaviour
         {
             tankSelector = PlayerPrefs.GetInt("tankModel");
         }
+
+        if (!PlayerPrefs.HasKey("deathlessRun"))
+        {
+            PlayerPrefs.SetInt("deathlessRun", 1);
+        }
+        else
+        {
+            deathlessRun = PlayerPrefs.GetInt("deathlessRun");
+        }
+
         //tankSelector = Random.Range(0, 8);
         this.transform.GetChild(0).GetChild(tankSelector).gameObject.SetActive(true);
         this.transform.GetChild(1).GetChild(0).GetChild(tankSelector).gameObject.SetActive(true);
@@ -170,7 +183,12 @@ public class TankController : MonoBehaviour
 
             if (livesRemaining > 0)
             {
-                Debug.Log("You have lives left");
+                if (gameMode == 4)
+                {
+                    deathlessRun = 0;
+                    PlayerPrefs.SetInt("deathlessRun", deathlessRun);
+                }
+                Debug.Log("You have " + livesRemaining + " lives left");
                 livesRemaining--;
                 PlayerPrefs.SetInt("livesLeft", livesRemaining);
                 gameObject.transform.localScale = new Vector3(0, 0, 0);

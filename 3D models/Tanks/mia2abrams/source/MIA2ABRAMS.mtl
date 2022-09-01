@@ -1,0 +1,33 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl AnyConv_com__texture_0001
+Ka 0.000000 0.000000 0.000000
+Kd 0.211765 0.243137 0.207843
+Ks 0.330000 0.330000 0.330000
+map_Kd MIA2ABRAMS/AnyConv_com__texture_0001.jpg
+
+newmtl AnyConv_com__texture_0013
+Ka 0.000000 0.000000 0.000000
+Kd 0.196078 0.188235 0.176471
+Ks 0.330000 0.330000 0.330000
+map_Kd MIA2ABRAMS/AnyConv_com__texture_0013.jpg
+
+newmtl AnyConv_com__texture_0007
+Ka 0.000000 0.000000 0.000000
+Kd 0.137255 0.149020 0.149020
+Ks 0.330000 0.330000 0.330000
+map_Kd MIA2ABRAMS/AnyConv_com__texture_0007.jpg
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Wet_Dirt_basecolor_tga
+Ka 0.000000 0.000000 0.000000
+Kd 0.454902 0.345098 0.250980
+Ks 0.330000 0.330000 0.330000
+map_Kd MIA2ABRAMS/Wet_Dirt_basecolor_tga.png
+

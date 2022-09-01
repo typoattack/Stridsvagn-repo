@@ -8,8 +8,6 @@ public class RoundaboutWallSpawner : MonoBehaviour
 
     public GameObject wall;
     public GameObject wallDestructible;
-    public GameObject backgroundTile;
-    public int backgroundInterval;
 
     public float xMin;
     public float xMax;
@@ -54,34 +52,42 @@ public class RoundaboutWallSpawner : MonoBehaviour
 
     void SpawnTargets()
     {
-        for (int x = backgroundMin; x <= backgroundMax; x += backgroundInterval)
-        {
-            for (int y = backgroundMin; y <= backgroundMax; y += backgroundInterval)
-            {
-                Vector2 pos = new Vector2(x, y);
-                Instantiate(backgroundTile, pos, transform.rotation);
-            }
-        }
-
-        for (int x = (int)xOuterMin; x <= (int)xOuterMax; x += 2)
+        for (int x = (int)xOuterMin; x <= (int)xOuterMax; x++)
         {
             for (int y = (int)yOuterMin; y <= (int)yOuterMax; y++)
             {
-                if (x >= xInnerMin && x <= xInnerMax && y >= yInnerMin && y <= yInnerMax) continue;
+                if ((x >= xInnerMin && x <= xInnerMax && y >= yInnerMin && y <= yInnerMax)
+                    || x % 5 == 0 || y % 5 == 0) continue;
                 spawnWallSegment(x, y);
             }
         }
-
-        for (int x = -17; x <= 17; x+= 2)
+        
+        for (int x = -17; x <= 17; x++)
         {
-            for (int y = (int)yMin; y <= (int)yOuterMin; y++) spawnWallSegment(x, y);
-            for (int y = (int)yOuterMax; y <= (int)yMax; y++) spawnWallSegment(x, y);
+            for (int y = (int)yMin - 4; y <= (int)yOuterMin; y++)
+            {
+                if (x % 5 == 0 || y % 5 == 0) continue;
+                else spawnWallSegment(x, y);
+            }
+            for (int y = (int)yOuterMax; y <= (int)yMax + 4; y++)
+            {
+                if (x % 5 == 0 || y % 5 == 0) continue;
+                else spawnWallSegment(x, y);
+            }
         }
 
         for (int y = -17; y<= 17; y++)
         {
-            for (int x = (int)xMin; x <= (int)xOuterMin; x += 2) spawnWallSegment(x, y);
-            for (int x = (int)xOuterMax; x <= (int)xMax; x += 2) spawnWallSegment(x, y);
+            for (int x = (int)xMin - 4; x <= (int)xOuterMin; x++)
+            {
+                if (x % 5 == 0 || y % 5 == 0) continue;
+                else spawnWallSegment(x, y);
+            }
+            for (int x = (int)xOuterMax; x <= (int)xMax + 4; x++)
+            {
+                if (x % 5 == 0 || y % 5 == 0) continue;
+                else spawnWallSegment(x, y);
+            }
         }
     }
 
@@ -91,7 +97,7 @@ public class RoundaboutWallSpawner : MonoBehaviour
         Vector2 pos = new Vector2(x, y);
         if (decider >= 9)
         {
-            decider = Random.Range(0, 2);
+            decider = Random.Range(0, 4);
             if (decider == 0) Instantiate(wall, pos, transform.rotation);
             else Instantiate(wallDestructible, pos, transform.rotation);
         }

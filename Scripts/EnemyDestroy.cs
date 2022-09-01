@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class EnemyDestroy : MonoBehaviour
 {
+    private int gameMode;
     public int HP;
     private float initialHP;
     public GameObject explosion;
     public GameObject ricochet;
     public GameObject husk;
+    private int killsCampaign;
 
     [SerializeField]
     Texture Box;
@@ -17,6 +19,24 @@ public class EnemyDestroy : MonoBehaviour
     private void Start()
     {
         initialHP = (float)HP;
+
+        if (!PlayerPrefs.HasKey("gameMode"))
+        {
+            PlayerPrefs.SetInt("gameMode", 3);
+        }
+        else
+        {
+            gameMode = PlayerPrefs.GetInt("gameMode");
+        }
+
+        if (!PlayerPrefs.HasKey("killsCampaign"))
+        {
+            PlayerPrefs.SetInt("killsCampaign", 0);
+        }
+        else
+        {
+            killsCampaign = PlayerPrefs.GetInt("killsCampaign");
+        }
     }
 
     private void Update()
@@ -37,6 +57,11 @@ public class EnemyDestroy : MonoBehaviour
             }
             else
             {
+                if (gameMode == 4)
+                {
+                    killsCampaign += 1;
+                    PlayerPrefs.SetInt("killsCampaign", killsCampaign);
+                }
                 GameObject exp = Instantiate(explosion, transform.position, transform.rotation) as GameObject;
                 exp.transform.parent = null;
                 GameController.enemyCount--;

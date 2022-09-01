@@ -1,0 +1,22 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl T_BS_t80_track_BC
+Ka 0.000000 0.000000 0.000000
+Kd 0.278431 0.250980 0.235294
+Ks 0.330000 0.330000 0.330000
+map_Kd T80UD(LOW POLY)/T_BS_t80_track_BC.jpg
+
+newmtl T_BS_t80ud_BC
+Ka 0.000000 0.000000 0.000000
+Kd 0.258824 0.250980 0.200000
+Ks 0.330000 0.330000 0.330000
+map_Kd T80UD(LOW POLY)/T_BS_t80ud_BC.jpg
+
+newmtl Wet_Dirt_basecolor_tga
+Ka 0.000000 0.000000 0.000000
+Kd 0.454902 0.345098 0.250980
+Ks 0.330000 0.330000 0.330000
+map_Kd T80UD(LOW POLY)/Wet_Dirt_basecolor_tga.png
+

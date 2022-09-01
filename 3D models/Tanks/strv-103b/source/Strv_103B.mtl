@@ -1,0 +1,44 @@
+newmtl 4B632849-C9AB-43B3-AE36-E96CE421FFB5
+Kd 1.000 1.000 1.000
+Ks 0.314 0.314 0.314
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/strv_103b_chassis_01_diffuse.jpg
+map_Ks textures/strv_103b_chassis_01_specular.jpg
+norm textures/strv_103b_chassis_01_normal.jpg
+
+newmtl 91782FB4-5AEA-4821-A986-29AF1E527438
+Kd 1.000 1.000 1.000
+Ks 0.314 0.314 0.314
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/strv_103b_track_diffuse.jpg
+map_Ks textures/strv_103b_track_specular.jpg
+norm textures/strv_103b_track_normal.jpg
+map_d textures/strv_103b_track_alpha.png
+
+newmtl 76A74269-17AD-4A94-B479-7ECEE291D8ED
+Kd 1.000 1.000 1.000
+Ks 0.314 0.314 0.314
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/strv_103b_hull_01_diffuse.jpg
+map_Ks textures/strv_103b_hull_01_specular.jpg
+norm textures/strv_103b_hull_01_normal.jpg
+map_d textures/strv_103b_hull_01_alpha.png
+
+newmtl 9B1A7FB6-5D13-4DE1-9830-45A74E1C0CC4
+Kd 0.502 0.502 0.502
+Ks 0.067 0.067 0.067
+Ns 30
+Ke 0.000 0.000 0.000
+
+newmtl 6B14A595-C4D5-49DB-BBDB-A4639B014F65
+Kd 1.000 1.000 1.000
+Ks 0.314 0.314 0.314
+Ns 30
+Ke 0.000 0.000 0.000
+map_Kd textures/strv_103b_guns_diffuse.jpg
+map_Ks textures/strv_103b_guns_specular.jpg
+norm textures/strv_103b_guns_normal.jpg
+

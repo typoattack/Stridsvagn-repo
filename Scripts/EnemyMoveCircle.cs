@@ -48,7 +48,7 @@ public class EnemyMoveCircle : MonoBehaviour
             transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
 
             //RaycastHit2D guard = Physics2D.BoxCast(bumper.position, new Vector2(0.6f, 0.6f), 0.0f, transform.forward, 0.0f, 13 << 6);
-            RaycastHit2D guard = Physics2D.CircleCast(bumper.position, 0.3f, transform.forward, 0.0f, 13 << 6);
+            RaycastHit2D guard = Physics2D.CircleCast(bumper.position, 0.34f, transform.forward, 0.0f, 13 << 6);
             
             if (transform.position.x <= xMin ||
                 transform.position.x >= xMax ||
