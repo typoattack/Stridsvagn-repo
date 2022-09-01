@@ -42,5 +42,6 @@ public class BulletMover : MonoBehaviour
     private void calculateReflection(RaycastHit2D reflector)
     {
         rb2D.velocity = Vector2.Reflect(rb2D.velocity, reflector.normal);
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

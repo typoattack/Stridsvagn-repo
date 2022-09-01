@@ -6,12 +6,12 @@ public class Pickup : MonoBehaviour
 {
     public bool isRandomPickup;
     public int ammo;
-    public static int numPickups = 0;
+    //public static int numPickups = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        numPickups += 1;
+        //numPickups += 1;
         if (isRandomPickup) ammo = Random.Range(1, 6);
         this.transform.GetChild(ammo).gameObject.SetActive(true);
     }
@@ -24,7 +24,8 @@ public class Pickup : MonoBehaviour
 
     public void DestroyPickup()
     {
-        numPickups -= 1;
-        Destroy(gameObject);
+        //numPickups -= 1;
+        if (transform.parent) Destroy(transform.parent.gameObject);
+        else Destroy(gameObject);
     }
 }

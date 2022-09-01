@@ -7,8 +7,6 @@ public class WallDestructibleScript : MonoBehaviour
 {
     public int HP;
     private float initialHP;
-    //public Slider HPSlider;
-    //public Image SliderFill;
     public GameObject explosion;
 
     [SerializeField]
@@ -18,35 +16,18 @@ public class WallDestructibleScript : MonoBehaviour
     void Start()
     {
         initialHP = HP;
-        //HPSlider.value = Mathf.Clamp01((float)HP / initialHP);
-        //SliderFill.color = Color.green;
-        //HPSlider.gameObject.SetActive(false);
-        //SliderFill.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (HPSlider)
-        {
-            HPSlider.value = Mathf.Clamp01((float)HP / initialHP);
 
-            if (HP <= (initialHP / 2)) SliderFill.color = Color.yellow;
-            if (HP <= (initialHP / 4)) SliderFill.color = Color.red;
-        }
-        */
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("EnemyBullet"))
         {
-            //GameObject ric = Instantiate(thud, other.transform, false) as GameObject;
             Destroy(collision.gameObject);
-
-            //HPSlider.gameObject.SetActive(true);
-            //SliderFill.gameObject.SetActive(true);
-            //SliderFill.color = Color.green;
 
             if (HP > 1) HP--;
             else
@@ -57,8 +38,6 @@ public class WallDestructibleScript : MonoBehaviour
 
                 Destroy(GetComponent<BoxCollider2D>());
 
-                //HPSlider.gameObject.SetActive(false);
-                //SliderFill.gameObject.SetActive(false);
                 this.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
                 this.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
             }

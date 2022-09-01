@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     public float yMaxWalls;
     public int maxObjects;
     [HideInInspector] public int objectsToSpawn;
-    public int pickupsToSpawn;
+    public int cratesToSpawn;
     private int decider;
     public bool proceduralTanks;
     public bool proceduralWalls;
@@ -50,6 +50,9 @@ public class GameController : MonoBehaviour
     private bool canPause;
     public GameObject gameOverMenu;
     private bool hasGameStarted = false;
+    public int[] campaignThresholds = { 1, 1, 1, 1, 1, 1, 0, 0 };
+    public int[] noLivesLostCampaign = { 1, 1, 1, 1, 1, 1, 1, 0 };
+    private int deathlessRun;
 
     private void Awake()
     {
@@ -61,6 +64,34 @@ public class GameController : MonoBehaviour
         {
             gameMode = PlayerPrefs.GetInt("gameMode");
         }
+
+        if (!PlayerPrefs.HasKey("campaignThresholds"))
+        {
+            PlayerPrefsX.SetIntArray("campaignThresholds", campaignThresholds);
+        }
+        else
+        {
+            campaignThresholds = PlayerPrefsX.GetIntArray("campaignThresholds");
+        }
+
+        if (!PlayerPrefs.HasKey("deathlessRun"))
+        {
+            PlayerPrefs.SetInt("deathlessRun", 1);
+        }
+        else
+        {
+            deathlessRun = PlayerPrefs.GetInt("deathlessRun");
+        }
+
+        if (!PlayerPrefs.HasKey("noLivesLostCampaign"))
+        {
+            PlayerPrefsX.SetIntArray("noLivesLostCampaign", noLivesLostCampaign);
+        }
+        else
+        {
+            noLivesLostCampaign = PlayerPrefsX.GetIntArray("noLivesLostCampaign");
+        }
+
         currentScene = SceneManager.GetActiveScene();
         allyCount = 0;
         enemyCount = 0;
@@ -142,7 +173,7 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene(6, LoadSceneMode.Single);
         }
 
-        if (Pickup.numPickups <= pickupsToSpawn)
+        if (Crate.numCrates <= cratesToSpawn)
         {
             Vector2 pos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
             targetSpawn.position = pos;
@@ -154,7 +185,7 @@ public class GameController : MonoBehaviour
             }
 
             Instantiate(powerup, pos, transform.rotation);
-            Debug.Log(Pickup.numPickups);
+            //Debug.Log(Crate.numCrates);
         }
     }
 
@@ -264,6 +295,7 @@ public class GameController : MonoBehaviour
 
     public void activateGameOverMenu(int outcome, int levelButton)
     {
+        Time.timeScale = 0.0f;
         canPause = false;
         gameOverMenu.SetActive(true);
         gameOverMenu.transform.GetChild(outcome).gameObject.SetActive(false);
@@ -271,13 +303,29 @@ public class GameController : MonoBehaviour
         {
             gameOverMenu.transform.GetChild(levelButton).gameObject.SetActive(true);
         }
+        if (gameMode == 4 && outcome == 2 &&  SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            for (int i = 0; i < campaignThresholds.Length; i++)
+            {
+                campaignThresholds[i] = 1;
+            }
+            PlayerPrefsX.SetIntArray("campaignThresholds", campaignThresholds);
+            if (deathlessRun == 1)
+            {
+                for (int i = 0; i < noLivesLostCampaign.Length; i++)
+                {
+                    noLivesLostCampaign[i] = 1;
+                }
+                PlayerPrefsX.SetIntArray("noLivesLostCampaign", noLivesLostCampaign);
+            }
+        }
     }
 
     public void reloadScene()
     {
         unpauseGame();
         hasGameStarted = false;
-        Pickup.numPickups = 0;
+        Crate.numCrates = 0;
         SceneManager.LoadScene(currentScene.name, LoadSceneMode.Single);
     }
 
@@ -285,7 +333,7 @@ public class GameController : MonoBehaviour
     {
         unpauseGame();
         hasGameStarted = false;
-        Pickup.numPickups = 0;
+        Crate.numCrates = 0;
         SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
     }
 }
