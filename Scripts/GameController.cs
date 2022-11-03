@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     public float yMinWalls;
     public float yMaxWalls;
     public int maxObjects;
-    [HideInInspector] public int objectsToSpawn;
+    [HideInInspector] public static int objectsToSpawn;
     public int cratesToSpawn;
     private int decider;
     public bool proceduralTanks;

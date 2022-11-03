@@ -23,6 +23,7 @@ public class TankController : MonoBehaviour
     public Text ammoText;
     public int HP;
     private int enemyCount;
+    private int enemiesLeft;
     public int livesRemaining;
     private bool isDead;
 
@@ -51,6 +52,7 @@ public class TankController : MonoBehaviour
     private float initialHP;
     public int ammoType;
     private int ammoCountdown;
+    private int ammoCountInitial;
 
     private float lts;
     private float rts;
@@ -95,7 +97,7 @@ public class TankController : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         this.transform.position = GameController.spawnPoint;
-        enemyCount = GameController.enemyCount;
+        enemiesLeft = enemyCount = GameController.objectsToSpawn;
         if (!PlayerPrefs.HasKey("tankInitialHP"))
         {
             PlayerPrefs.SetInt("tankInitialHP", 10);
@@ -118,6 +120,7 @@ public class TankController : MonoBehaviour
         playAlarm = 1;
         ammoType = 0;
         ammoCountdown = 0;
+        ammoCountInitial = 5;
         GameController.allyCount++;
         muzzleAnimator = this.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Animator>();
         originalFireRate = fireRate;
@@ -136,6 +139,8 @@ public class TankController : MonoBehaviour
 
     private void Update()
     {
+        enemiesLeft = GameController.enemyCount;
+        if (enemiesLeft > enemyCount) enemyCount = enemiesLeft;
         spread = Random.Range(-0.5f + (float)HP / (initialHP * 2), 0.5f - (float)HP / (initialHP * 2));
         shotSpawn.localRotation = Quaternion.Euler(0, 0, spread * 1.25f);
 
@@ -289,13 +294,13 @@ public class TankController : MonoBehaviour
                 case 1:
                     audio.PlayOneShot(ammoSound, 1.0f);
                     ammoType = pickup.ammo;
-                    ammoCountdown = 5;
+                    ammoCountInitial = ammoCountdown = 5;
                     fireRate = fireRate / 2.0f;
                     break;
                 case 2:
                     audio.PlayOneShot(ammoSound, 1.0f);
                     ammoType = pickup.ammo;
-                    ammoCountdown = 5;
+                    ammoCountInitial = ammoCountdown = 5;
                     break;
                 case 3:
                     audio.PlayOneShot(healthSound, 1.0f);
@@ -306,12 +311,12 @@ public class TankController : MonoBehaviour
                 case 4:
                     audio.PlayOneShot(ammoSound, 1.0f);
                     ammoType = pickup.ammo;
-                    ammoCountdown = 3;
+                    ammoCountInitial = ammoCountdown = 3;
                     break;
                 case 5:
                     audio.PlayOneShot(ammoSound, 1.0f);
                     ammoType = pickup.ammo;
-                    ammoCountdown = 1;
+                    ammoCountInitial = ammoCountdown = 1;
                     break;
             }
             //Destroy(collision.gameObject, 0.25f);
@@ -346,7 +351,7 @@ public class TankController : MonoBehaviour
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
 
         // draw the name with a shadow (colored for buf)	
-        GUI.color = Color.black;
+        //GUI.color = Color.black;
         //GUI.Label(new Rect(pos.x - 20, Screen.height - pos.y - 30, 100, 30), PlayerName.Value.Value);
 
         GUI.color = Color.white;
@@ -359,6 +364,7 @@ public class TankController : MonoBehaviour
         if (ammoType == 5) { GUI.color = Buff.GetColor(Buff.BuffType.Shield); }
 
         //GUI.Label(new Rect(pos.x - 21, Screen.height - pos.y - 31, 100, 30), PlayerName.Value.Value);
+        //GUI.DrawTexture(new Rect(pos.x + 1150, Screen.height - pos.y + 300, 120,  -((float)ammoCountdown) / ammoCountInitial * (float)500f), Box);
 
         // draw health bar background
         GUI.color = Color.grey;
@@ -369,6 +375,17 @@ public class TankController : MonoBehaviour
         if (HP <= (initialHP / 2)) GUI.color = Color.yellow;
         if (HP <= (initialHP / 4)) GUI.color = Color.red;
         GUI.DrawTexture(new Rect(pos.x - 25, Screen.height - pos.y + 21, (float)HP / initialHP * (float)50f, 5), Box);
+        //GUI.DrawTexture(new Rect(pos.x - 465, Screen.height - pos.y + 645, (float)HP / initialHP * (float)460f, 60), Box);
+        /*
+        // draw lives bar amount
+        if ((livesRemaining + 1) > (5 / 2)) GUI.color = Color.green;
+        if ((livesRemaining + 1) <= (5 / 2)) GUI.color = Color.yellow;
+        if ((livesRemaining + 1) <= (5 / 4)) GUI.color = Color.red;
+        GUI.DrawTexture(new Rect(pos.x + 285, Screen.height - pos.y + 645, ((float)livesRemaining + 1f) / 5f * (float)290f, 60), Box);
+
+        GUI.color = Color.red;
+        GUI.DrawTexture(new Rect(pos.x - 1265, Screen.height - pos.y + 300, 120, -((float)enemiesLeft) / enemyCount * (float)500f), Box);
+        */
     }
 
     IEnumerator Respawn()
