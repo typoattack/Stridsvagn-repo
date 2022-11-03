@@ -89,7 +89,7 @@ public class RoundaboutBackgroundSpawner : MonoBehaviour
             }
         }
 
-        for (int y = -18; y <= 18; y++)
+        for (int y = -19; y <= 18; y++)
         {
             for (int x = (int)xMin - 4; x < (int)xOuterMin; x++)
             {

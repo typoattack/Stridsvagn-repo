@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class EnemyMoveStraightLine : MonoBehaviour
 {
+    private Rigidbody2D rb2D;
     public Transform bumper;
     private GameController gameController;
 
     public float speed;
     public bool randomRotation;
+    public bool circleMovement;
     public int rotation;
     public bool canMove;
+    private float direction;
 
     private float xMin;
     private float xMax;
     private float yMin;
     private float yMax;
+    public Vector2 rotationPoint;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb2D = GetComponent<Rigidbody2D>();
         if (randomRotation) rotation = Random.Range(0, 10);
         if (rotation < 5) transform.rotation = Quaternion.Euler(0, 0, 0);
         else transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -29,6 +34,9 @@ public class EnemyMoveStraightLine : MonoBehaviour
         xMax = gameController.xMax;
         yMin = gameController.yMin;
         yMax = gameController.yMax;
+        int decider = Random.Range(0, 2);
+        if (decider == 0) direction = 0f;
+        else direction = 180f;
     }
 
     // Update is called once per frame
@@ -36,6 +44,12 @@ public class EnemyMoveStraightLine : MonoBehaviour
     {
         if (canMove)
         {
+            if (circleMovement)
+            {
+                float angle = AngleBetweenPoints(rb2D.position, rotationPoint);
+                rb2D.rotation = angle + direction;
+            }
+
             transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
 
             RaycastHit2D guard = Physics2D.BoxCast(bumper.position, new Vector2(0.67f, 0.67f), 0.0f, transform.forward, 0.0f, 13 << 6);
@@ -49,5 +63,10 @@ public class EnemyMoveStraightLine : MonoBehaviour
                 transform.localRotation *= Quaternion.Euler(0, 0, 180);
             }
         }
+    }
+
+    private float AngleBetweenPoints(Vector2 a, Vector2 b)
+    {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 }
